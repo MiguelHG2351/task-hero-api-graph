@@ -8,8 +8,19 @@ type TeamData = {
 } & Team
 
 export const querys = {
-    async getTeams(root: unknown, args: {skip?: number, take?:number}, context: context): Promise<TeamData[]> {
+    async getTeams(root: unknown, args: {userId: string, skip?: number, take?:number}, context: context): Promise<TeamData[]> {
+        
+        
         const teams = await context.orm.team.findMany({
+            where: {
+                TeamAndUser: {
+                    every: {
+                        userId: {
+                            equals: args.userId
+                        }
+                    }
+                }
+            },
             include: {
                 TeamAndUser: {
                     include: {
@@ -27,7 +38,7 @@ export const querys = {
         return teams
     },
     async getTeam(root: unknown, args: { id: string }, context: context): Promise<TeamData | null> {
-        return  await context.orm.team.findUnique({
+        return  await context.orm.team.findFirst({
             where: {
                 id: args.id,
             },

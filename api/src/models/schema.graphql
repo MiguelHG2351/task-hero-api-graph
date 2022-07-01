@@ -124,7 +124,7 @@ type TeamResponse {
 }
 
 type Query {
-    getTeams(skip: Int, take: Int): [TeamResponse]!
+    getTeams(userId: String, skip: Int, take: Int): [TeamResponse]!
     getTeam(id: String!): TeamResponse
     getProjects(id: String): [Project]
     getProject(id: String): Project
