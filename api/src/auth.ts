@@ -39,6 +39,9 @@ export const login: RequestHandler = async (req, res) => {
               name: userBody.name
             }
         })
+        console.log(user)
+        console.log(userBody)
+        console.log(userBody.password)
 
         if(!user) {
             throw new Error()
@@ -51,7 +54,7 @@ export const login: RequestHandler = async (req, res) => {
         const token = await new SignJWT({id: user.id})
                     .setProtectedHeader({alg: 'HS256'})
                     .setIssuedAt()
-                    .setExpirationTime('2h')
+                    .setExpirationTime('10d')
                     .sign(new TextEncoder().encode(JWT_SECRET_KEY))
         res.json({
             token,
@@ -59,6 +62,7 @@ export const login: RequestHandler = async (req, res) => {
             id: user.id,
         })
     } catch (err) {
+      console.log(err)
         res.sendStatus(401)
     }
 }

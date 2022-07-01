@@ -107,11 +107,53 @@ enum Role {
   GUEST
 }
 
-type Query {
-    getProjects(skip: Int, take: Int): [Project]!
-    getProject(id: String!): Project
+type vaulTeam {
+  id: String
+  teamId: String
+  secrets: [Secret]
 }
 
-# type Mutation {
-#     createAvo(data: AvocadoInput!): Avocado!
-# }
+type TeamResponse {
+  id:          String       
+  full_name:   String        
+  TeamAndUser: [TeamAndUser]
+  vaulTeam:    [vaulTeam]
+  vaultId:     Int
+  createdAt:   DateTime
+  updatedAt:   DateTime 
+}
+
+type Query {
+    getTeams(skip: Int, take: Int): [TeamResponse]!
+    getTeam(id: String!): TeamResponse
+    getProjects(id: String): [Project]
+    getProject(id: String): Project
+    getTables(id: String): [Table]
+    getTable(id: String): Table
+}
+
+input TeamInput {
+  id: String
+  full_name: String
+  vaultId: Int
+  userId : String
+} 
+
+input ProjectInput {
+  id: String
+  description: String
+  name: String
+  teamId: String
+}
+
+input TableInput {
+  name: String
+  projectId: String
+  category: String
+}
+
+type Mutation {
+    createTeam(data: TeamInput!): Team!
+    createProject(data: ProjectInput!): Project!
+    createTable(data: TableInput!): Table!
+}
