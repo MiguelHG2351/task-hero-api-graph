@@ -53,11 +53,15 @@ export const querys = {
         });
     },
     async getProject(root: unknown, args: { id: string }, context: context): Promise<Project | null> {
-        return  await context.orm.project.findUnique({
+        const project= await context.orm.project.findFirst({
             where: {
-                id: args.id,
+                teamId: args.id,
             }
         });
+        
+        console.log(project)
+        
+        return project
     },
     async getTables(root: unknown, args: { id: string }, context: context): Promise<Table[] | null> {
         return await context.orm.table.findMany({
