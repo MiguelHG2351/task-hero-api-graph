@@ -1,0 +1,117 @@
+scalar DateTime
+
+type Team {
+  id:          String       
+  full_name:   String        
+  vaultId:     Int
+  createdAt:   DateTime
+  updatedAt:   DateTime
+}
+
+type VaultTeam {
+  id:      String  
+  teamId:  String
+  team:    Team
+}
+
+type Secret {
+  id:          String    
+  name:        String     
+  value:       String     
+  createdAt:   DateTime
+  updatedAt:   DateTime
+  teamId:      String
+  VaultTeam:   VaultTeam
+  vaultTeamId: String
+}
+
+type TeamAndUser {
+  id:     String
+  userId: String
+  teamId: String
+  user:   User
+  team:   Team
+}
+
+type Project {
+  id:          String  
+  description: String
+  name:        String
+  teamId:      String
+  team:        Team
+  createdAt:   DateTime
+  updatedAt:   DateTime
+  tables:     [Table]
+}
+
+type Table {
+  id:        String   
+  name:      String
+  projectId: String
+  category:  String
+}
+
+type Card {
+  id:       String   
+  name:    String
+  description: String 
+  category: String    
+  tableId: String
+  table:   Table
+}
+
+type MessageCard {
+  id:       String   
+  text:    String    
+  img:    String    
+  authorId: String
+  cardId:  String
+}
+
+type File {
+  id:       String   
+  path:    String    
+  authorId: String
+  author:   User
+  cardId:  String
+  card:     Card
+}
+
+
+type Link {
+  id:       String   
+  url:    String    
+  authorId: String
+  author:   User
+  cardId:  String
+  card:     Card
+}
+
+type User {
+  id:            String       
+  name:          String
+  email:         String       
+  emailVerified: DateTime
+  image:         String
+}
+
+type AdminAPI {
+  id:         String
+  name:       String
+  password:    String
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  GUEST
+}
+
+type Query {
+    getProjects(skip: Int, take: Int): [Project]!
+    getProject(id: String!): Project
+}
+
+# type Mutation {
+#     createAvo(data: AvocadoInput!): Avocado!
+# }

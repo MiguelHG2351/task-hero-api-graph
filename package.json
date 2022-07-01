@@ -1,0 +1,38 @@
+{
+  "name": "task-hero-api-graph",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "yarn workspaces run build"
+  },
+  "workspaces": [
+    "api",
+    "client",
+    "package/*"
+  ],
+  "engines": {
+    "node": ">=14.x <17"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelHG2351/task-hero-api-graph.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MiguelHG2351/task-hero-api-graph/issues"
+  },
+  "homepage": "https://github.com/MiguelHG2351/task-hero-api-graph#readme",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
