@@ -118,6 +118,7 @@ type TeamResponse {
   full_name:   String        
   TeamAndUser: [TeamAndUser]
   vaulTeam:    [vaulTeam]
+  projects:    [Project]
   vaultId:     Int
   createdAt:   DateTime
   updatedAt:   DateTime 

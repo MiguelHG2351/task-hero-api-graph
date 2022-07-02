@@ -10,7 +10,6 @@ type TeamData = {
 export const querys = {
     async getTeams(root: unknown, args: {userId: string, skip?: number, take?:number}, context: context): Promise<TeamData[]> {
         
-        
         const teams = await context.orm.team.findMany({
             where: {
                 TeamAndUser: {
@@ -27,6 +26,7 @@ export const querys = {
                         user: true
                     }
                 },
+                projects: true,
                 vaulTeam: {
                     include: {
                         secrets: true
