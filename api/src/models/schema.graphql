@@ -29,6 +29,7 @@ type TeamAndUser {
   id:     String
   userId: String
   teamId: String
+  role:   Role
   user:   User
   team:   Team
 }

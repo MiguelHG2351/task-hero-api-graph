@@ -52,7 +52,8 @@ export const querys = {
                     include: {
                         secrets: true
                     }
-                }
+                },
+                projects: true
             }
         });
     },
